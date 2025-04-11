@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: {
+{ inputs, pkgs, ... }: {
   # Import Nix modules
   imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
@@ -16,18 +16,30 @@
 
     # Shell aliases
     shellAliases = {
+      rebuild = "sudo nixos-rebuild switch --flake ~/nixos#linda";
       c = "clear";
       t = "touch";
     };
 
     # User packages
-    packages = [];
+    packages = with pkgs; [
+      # CLI utilities
+      vim wget git fastfetch
+      
+      # System tools
+      sops
+
+      # Development
+      # cargo rustfmt rustc
+      gcc                 # Needed to compile rust
+      docker docker-compose
+
+      # GUI but not a Flatpak
+      vlc
+    ];
 
     # Manage dotfiles
-    file = {
-      ".bashrc".source = ../../dotfiles/bashrc;
-      "bin".source = ../../bin;
-    };
+    file.".bashrc".source = ../../dotfiles/bashrc;
 
     # Don't change this value even if you update Home Manager
     stateVersion = "24.11";

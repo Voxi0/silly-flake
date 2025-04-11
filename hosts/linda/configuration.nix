@@ -1,17 +1,11 @@
-{ config, pkgs, inputs, ... }: {
+{ inputs, pkgs, ... }: {
   # Import Nix modules
   imports = [ 
     ./hardware-configuration.nix
+    ../../modules/system
+    ../../modules/lucy-packages
     inputs.home-manager.nixosModules.default
     inputs.sops-nix.nixosModules.sops
-    
-    # Modules:
-    ../../modules/system/main-user.nix
-
-    # Packages
-    ../../modules/lucy-packages/lucy-packages.nix
-    ../../modules/lucy-packages/codium.nix
-    ../../modules/lucy-packages/flatpak.nix
   ];
 
   # Nix / Nixpkgs
@@ -76,10 +70,10 @@
     };
   };
 
-  # Enable packages, VSCodium and Flatpak
+  # Enable packages, Flatpak and VSCodium
   lucy-packages.enable = true;
-  lucy-codium.enable = true;
   lucy-flatpak.enable = true;
+  lucy-codium.enable = true;
 
   # Main user
   main-user = {
@@ -102,9 +96,6 @@
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/lucy/.config/sops/age/keys.txt";
   };
-
-  # System-wide packages
-  environment.systemPackages = with pkgs; [ vim ];
 
   # Programs
   programs = {
