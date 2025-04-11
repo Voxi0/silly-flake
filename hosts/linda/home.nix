@@ -14,13 +14,18 @@
     # Environment variables to always set at login
     sessionVariables.EDITOR = "coium";
 
+    # Shell aliases
+    shellAliases = {
+      c = "clear";
+      t = "touch";
+    };
+
     # User packages
     packages = [];
 
     # Manage dotfiles
     file = {
       ".bashrc".source = ../../dotfiles/bashrc;
-      ".bash_aliases".source = ../../dotfiles/bash_aliases;
       "bin".source = ../../bin;
     };
 

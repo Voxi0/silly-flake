@@ -35,7 +35,6 @@
   # Networking
   networking = {
     hostName = "linda";
-    wireless.enable = true;
     networkmanager.enable = true;
     firewall.enable = true;
   };
