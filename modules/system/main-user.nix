@@ -1,23 +1,18 @@
-{ lib, config, pkgs, ... }:
-
-let
+{ lib, config, pkgs, ... }: let
     cfg = config.main-user;
-in
-{
+in {
+    # Module options
     options.main-user = {
-        enable
-            = lib.mkEnableOption "enable user module";
-        
+        enable = lib.mkEnableOption "Enable user module";
         userName = lib.mkOption {
             default = "mainuser";
-            description = ''
-                username
-            '';
+            description = "username";
         };
     };
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
+    # Configuration
     config = lib.mkIf cfg.enable {
+        # Define a user account - Don't forget to set a password with ‘passwd’
         users.users.${cfg.userName} = {
             isNormalUser = true;
             description = cfg.userName;
