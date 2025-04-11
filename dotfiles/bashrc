@@ -106,6 +106,9 @@ fi
 
 export EDITOR=vim
 
+# ~/bin to the system binarys
+export PATH="$HOME/bin:$PATH"
+
 # Run fetch if not in vscode (codium) to reduce clutter in codium
 if [ $TERM_PROGRAM != "vscode" ]; then
     fastfetch

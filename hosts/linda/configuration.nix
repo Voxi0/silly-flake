@@ -47,7 +47,7 @@
 
   boot.initrd.luks.devices."luks-1fa23410-0aea-499d-84ed-766344681c40".device = "/dev/disk/by-uuid/1fa23410-0aea-499d-84ed-766344681c40";
   networking.hostName = "linda"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

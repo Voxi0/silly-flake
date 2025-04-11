@@ -20,7 +20,7 @@ in
                 pkief.material-icon-theme
                 vadimcn.vscode-lldb
                 tekumara.typos-vscode
-                #t3dotgg.vsc-material-theme-but-i-wont-sue-you # I just liked the theme and this gives it back to me
+                # t3dotgg.vsc-material-theme-but-i-wont-sue-you # I just liked the theme and this gives it back to me
                 ];
             })
         ];

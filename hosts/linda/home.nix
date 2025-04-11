@@ -74,6 +74,8 @@
     ".bashrc".source = ../../dotfiles/bashrc;
     ".bash_aliases".source = ../../dotfiles/bash_aliases;
 
+    "bin".source = ../../bin;
+
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose

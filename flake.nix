@@ -6,6 +6,8 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest"; # https://github.com/gmodena/nix-flatpak?tab=readme-ov-file
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +28,7 @@
         ./hosts/linda/configuration.nix
         inputs.home-manager.nixosModules.default
         nix-flatpak.nixosModules.nix-flatpak
+        nixos-hardware.nixosModules.microsoft-surface-surface-pro-intel
       ];
     };
   };
