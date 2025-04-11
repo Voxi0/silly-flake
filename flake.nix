@@ -28,7 +28,7 @@
         ./hosts/linda/configuration.nix
         inputs.home-manager.nixosModules.default
         nix-flatpak.nixosModules.nix-flatpak
-        nixos-hardware.nixosModules.microsoft-surface-surface-pro-intel
+        # inputs.nixos-hardware.nixosModules.surface-pro-intel
       ];
     };
   };
