@@ -1,70 +1,44 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }: let
+  cfg = config.lucy-packages;
+in {
+  # Voxi0 -> I'll figure out how to simplify all this and move it somewhere more appropriate
 
-let
-	cfg = config.lucy-packages;
-in
-{
-    options = {
-        lucy-packages.enable
-            = lib.mkEnableOption "enable lucy packages";
-    };
+  # Module options
+  options.lucy-packages.enable = lib.mkEnableOption "Enable Lucy's Packages";
 
-    config = lib.mkIf cfg.enable {
-        # List packages installed in system profile. To search, run:
-        # $ nix search wget
-        environment.systemPackages = with pkgs; [
-            # Cli utils
-            vim
-            wget
-            git
-            fastfetch
-            # System tools
-            sops
-            # Development
-            # cargo
-            # rustfmt
-            # rustc
+  # Configuration - Remove some Gnome packages
+  config = lib.mkIf cfg.enable {
+    # Remove some Gnome packages
+    environment.gnome.excludePackages = with pkgs.gnome; [
+      # gedit             # Text editor
+      # file-roller       # Archive manager
+      pkgs.baobab         # Disk usage analyzer
+      pkgs.cheese         # Photo booth
+      pkgs.eog            # Image viewer
+      pkgs.epiphany       # Web browser
+      pkgs.simple-scan    # Document scanner
+      pkgs.totem          # Video player
+      pkgs.yelp           # Help viewer
+      pkgs.evince         # Document viewer
+      pkgs.geary          # Email client
+      pkgs.seahorse       # Password manager
 
-            gcc # Needed to compile rust
-
-            docker
-            docker-compose
-
-            # Gui but not a flatpak
-            vlc
-        ];
-
-        # Remove some gnome packages
-        environment.gnome.excludePackages = with pkgs.gnome; [
-        pkgs.baobab      # disk usage analyzer
-        pkgs.cheese      # photo booth
-        pkgs.eog         # image viewer
-        pkgs.epiphany    # web browser
-        # gedit       # text editor
-        pkgs.simple-scan # document scanner
-        pkgs.totem       # video player
-        pkgs.yelp        # help viewer
-        pkgs.evince      # document viewer
-        # file-roller # archive manager
-        pkgs.geary       # email client
-        pkgs.seahorse    # password manager
-
-        # these should be self explanatory
-        # gnome-calculator
-        # gnome-calendar
-        # gnome-characters
-        # gnome-clocks 
-        pkgs.gnome-contacts
-        # gnome-font-viewer 
-        pkgs.gnome-logs 
-        pkgs.gnome-maps 
-        pkgs.gnome-music 
-        pkgs.gnome-photos 
-        # gnome-screenshot
-        pkgs.gnome-system-monitor 
-        pkgs.gnome-weather 
-        pkgs.gnome-disk-utility 
-        pkgs.gnome-connections
-  ];
-    };
+      # These should be self explanatory
+      # gnome-calculator
+      # gnome-calendar
+      # gnome-characters
+      # gnome-clocks
+      # gnome-font-viewer
+      # gnome-screenshot
+      pkgs.gnome-contacts
+      pkgs.gnome-logs
+      pkgs.gnome-maps
+      pkgs.gnome-music
+      pkgs.gnome-photos
+      pkgs.gnome-system-monitor
+      pkgs.gnome-weather
+      pkgs.gnome-disk-utility
+      pkgs.gnome-connections
+    ];
+  };
 }
