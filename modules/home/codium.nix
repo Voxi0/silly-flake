@@ -1,12 +1,10 @@
-{ lib, config, pkgs, ... }: let
-	cfg = config.lucy-codium;
-in {
+{ lib, config, pkgs, ... }: 
+{
   # Module options
   options.lucy-codium.enable = lib.mkEnableOption "Enable Lucy's Codium";
 
   # Configuration - Enable and configure VSCodium
-  config = lib.mkIf cfg.enable {
-    /* 
+  config = {
     programs.vscode = {
       package = pkgs.vscodium;
       enable = true;
@@ -21,20 +19,5 @@ in {
         # t3dotgg.vsc-material-theme-but-i-wont-sue-you # I just liked the theme and this gives it back to me
       ];
     };
-    */
-    # more at: https://nixos.wiki/wiki/VSCodium
-    environment.systemPackages = with pkgs; [
-        (vscode-with-extensions.override {
-            vscode = vscodium;
-            vscodeExtensions = with vscode-extensions; [
-            bbenoist.nix
-            rust-lang.rust-analyzer
-            pkief.material-icon-theme
-            vadimcn.vscode-lldb
-            tekumara.typos-vscode
-            # t3dotgg.vsc-material-theme-but-i-wont-sue-you # I just liked the theme and this gives it back to me
-            ];
-        })
-    ];
   };
 }

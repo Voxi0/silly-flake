@@ -72,7 +72,6 @@
   # Enable packages, Flatpak and VSCodium
   lucy-packages.enable = true;
   lucy-flatpak.enable = true;
-  lucy-codium.enable = true;
 
   # Main user
   main-user = {
