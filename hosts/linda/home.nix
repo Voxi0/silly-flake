@@ -1,6 +1,8 @@
 { inputs, pkgs, ... }: {
   # Import Nix modules
-  imports = [ inputs.sops-nix.homeManagerModules.sops ];
+  imports = [ 
+    inputs.sops-nix.homeManagerModules.sops
+     ];
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
@@ -12,21 +14,11 @@
     homeDirectory = "/home/lucy";
 
     # Environment variables to always set at login
-    sessionVariables.EDITOR = "coium";
+    sessionVariables.EDITOR = "codium";
 
     # Shell aliases
     shellAliases = {
       rebuild = "sudo nixos-rebuild switch --flake ~/nixos#linda";
-      c = "clear";
-      t = "touch";
-
-      # `alert` alias for long running commands - Use it like, `sleep 10; alert`
-      alert = "notify-send --urgency=low -i \"$( [ $? = 0 ] && echo terminal || echo error )\" \"$(history | tail -n1 | sed -e 's/^\s*[0-9]\\+\\s*//;s/[;&|]\\s*alert$//')\"";
-
-      # Useful aliases for `ls`
-      ll = "ls -alF";
-      la = "ls -A";
-      l = "ls -CF";
     };
 
     # User packages
@@ -39,7 +31,7 @@
 
       # Development
       # cargo rustfmt rustc
-      gcc                 # Needed to compile rust
+      gcc # Needed to compile rust
       docker docker-compose
 
       # GUI but not a Flatpak
@@ -47,7 +39,11 @@
     ];
 
     # Manage dotfiles
-    file.".bashrc".source = ../../dotfiles/bashrc;
+    file = {
+      ".bashrc".source = ../../dotfiles/bashrc;
+      ".bash_aliases".source = ../../dotfiles/bash_aliases;
+      "bin".source = ../../bin;
+    };
 
     # Don't change this value even if you update Home Manager
     stateVersion = "24.11";
