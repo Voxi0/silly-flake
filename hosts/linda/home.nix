@@ -1,6 +1,9 @@
 { inputs, pkgs, ... }: {
   # Import Nix modules
-  imports = [ inputs.sops-nix.homeManagerModules.sops ];
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+    ../../modules/home
+  ];
 
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
