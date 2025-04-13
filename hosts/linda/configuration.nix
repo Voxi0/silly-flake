@@ -2,8 +2,7 @@
   # Import Nix modules
   imports = [ 
     ./hardware-configuration.nix
-    ../../modules/system
-    ../../modules/lucy-packages
+    ../../modules/nixos
     inputs.home-manager.nixosModules.default
     inputs.sops-nix.nixosModules.sops
   ];
