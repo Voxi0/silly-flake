@@ -16,7 +16,7 @@
       availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];
       luks.devices."luks-bdcf371c-70c7-41f0-8bc0-4494cf5849e8".device = "/dev/disk/by-uuid/bdcf371c-70c7-41f0-8bc0-4494cf5849e8";
-    }
+    };
   };
 
   # Filesystems
