@@ -26,7 +26,7 @@
     packages = with pkgs; [
       # CLI utilities
       vim wget git fastfetch
-      
+
       # System tools
       sops
 
