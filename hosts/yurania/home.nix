@@ -34,7 +34,6 @@
       # CLI utilities
       vim
       wget
-      git
       fastfetch
       btop
 
