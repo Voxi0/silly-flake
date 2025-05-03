@@ -7,3 +7,7 @@ echo Starting switch:
 if [[ `hostname` == "linda" ]]; then
     sudo nixos-rebuild switch --flake ~/nixos#linda
 fi 
+
+if [[ `hostname` == "yurania" ]]; then
+    sudo nixos-rebuild switch --flake ~/nixos#yurania
+fi 

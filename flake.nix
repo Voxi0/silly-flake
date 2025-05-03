@@ -24,6 +24,9 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Window switcher hyprland
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
   };
 
   # Flake actions - What to do after fetching all the inputs/dependencies
@@ -36,6 +39,14 @@
         inputs.home-manager.nixosModules.default
         inputs.nix-flatpak.nixosModules.nix-flatpak
         inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
+      ];
+    };
+   nixosConfigurations.yurania = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/yurania/configuration.nix
+        inputs.home-manager.nixosModules.default
+        inputs.nix-flatpak.nixosModules.nix-flatpak
       ];
     };
   };

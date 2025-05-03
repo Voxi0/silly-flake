@@ -15,6 +15,10 @@ in {
         "org.signal.Signal"
         "io.missioncenter.MissionCenter"
         "com.github.KRTirtho.Spotube"
+        "org.prismlauncher.PrismLauncher"
+
+        # Image editor
+        "page.kramo.Sly"
       ];
     };
   };
