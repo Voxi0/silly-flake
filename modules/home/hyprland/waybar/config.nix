@@ -5,7 +5,7 @@
     position = "top";
     height = 30;
     output = [
-      "eDP-1"
+      "DVI-D-1"
       "HDMI-A-1"
     ];
     modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
@@ -18,10 +18,10 @@
     };
     "custom/hello-from-waybar" = {
       format = "hello {}";
-      max-length = 40;
+      max-length = 90;
       interval = "once";
       exec = pkgs.writeShellScript "hello-from-waybar" ''
-        echo "from within waybar"
+        date
       '';
     };
   };

@@ -8,16 +8,18 @@
     programs.vscode = {
       package = pkgs.vscodium;
       enable = true;
-      enableUpdateCheck = true;
-      enableExtensionUpdateCheck = true;
-      extensions = with pkgs.vscode-extensions; [
-        bbenoist.nix
-        rust-lang.rust-analyzer
-        pkief.material-icon-theme
-        vadimcn.vscode-lldb
-        tekumara.typos-vscode
-        # t3dotgg.vsc-material-theme-but-i-wont-sue-you # I just liked the theme and this gives it back to me
-      ];
+      profiles.default = {
+        enableUpdateCheck = true;
+        enableExtensionUpdateCheck = true;
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+          rust-lang.rust-analyzer
+          pkief.material-icon-theme
+          vadimcn.vscode-lldb
+          tekumara.typos-vscode
+          # Won't build if included? t3dotgg.vsc-material-theme-but-i-wont-sue-you # I just liked the theme and this gives it back to me
+        ];
+      };
     };
   };
 }
