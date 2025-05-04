@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }:
 {
-  mainBar = {
+  mainBar = with config.colorScheme.palette; {
     layer = "top";
     position = "top";
     height = 30;
