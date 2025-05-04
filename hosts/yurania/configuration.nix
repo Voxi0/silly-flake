@@ -88,6 +88,8 @@
     #jack.enable = true;
   };
 
+  programs.bash.completion.enable = true;
+
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
