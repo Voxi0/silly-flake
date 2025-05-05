@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   options = {
     # What desktop to use

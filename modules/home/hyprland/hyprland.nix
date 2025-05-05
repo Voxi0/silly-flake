@@ -1,7 +1,10 @@
-{ lib, config, pkgs, desktop, ... }: 
+{ lib, config, pkgs, ... }: 
 {
+  imports = [
+    ../../../hosts/yurania/options.nix
+  ];
 
-  config = lib.mkIf desktop.hyprland.enable {
+  config = lib.mkIf config.desktop.hyprland.enable {
     # Install hyprland
     wayland.windowManager.hyprland.enable = true; # enable Hyprland
 
