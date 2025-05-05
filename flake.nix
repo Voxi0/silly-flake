@@ -31,14 +31,7 @@
   };
 
   # Flake actions - What to do after fetching all the inputs/dependencies
-  outputs = { self, nixpkgs, ... }@inputs: let
-    # What desktop to use
-    desktop = { # These will not work on all systems
-      hyprland.enable = true;
-      plasma.enable = false;
-      # gnome.enable = false; # Dummy
-    };
-  in {
+  outputs = { self, nixpkgs, ... }@inputs: {
     # NixOS configurations
     nixosConfigurations.linda = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -50,7 +43,7 @@
       ];
     };
    nixosConfigurations.yurania = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs; inherit desktop;};
+      specialArgs = {inherit inputs;};
       modules = [
         ./hosts/yurania/configuration.nix
         inputs.home-manager.nixosModules.default

@@ -2,7 +2,9 @@
 { config, inputs, pkgs, lib, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+      ./options.nix
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/nixos/yurania.nix
       inputs.home-manager.nixosModules.default
