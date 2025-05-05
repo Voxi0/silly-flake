@@ -27,6 +27,12 @@
 
     # Window switcher hyprland
     hyprswitch.url = "github:h3rmt/hyprswitch/release";
+
+    # What desktop to use
+    desktop = {
+      hyprland.enable = true;
+      plasma.enable = false;
+    };
   };
 
   # Flake actions - What to do after fetching all the inputs/dependencies

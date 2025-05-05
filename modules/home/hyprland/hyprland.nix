@@ -65,7 +65,6 @@
     exec-once = [
       "waybar"
       "hyprpaper"
-      "hyprctl dispatch workspace main"
       "hyprswitch init --show-title --size-factor 5.5 --workspaces-per-row 5  --custom-css ~/.config/hyprswitch/theme.css &"
     ];
 

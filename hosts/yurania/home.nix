@@ -9,7 +9,6 @@
   programs.home-manager.enable = true;
 
   # Hyprland
-  programs.kitty.enable = true; # required for the default Hyprland config
   wayland.windowManager.hyprland.enable = true; # enable Hyprland
 
   # Optional, hint Electron apps to use Wayland:
@@ -47,7 +46,6 @@
       vlc
       kdePackages.dolphin
       
-
       # hyprland stuff
       rofi
       hyprpaper

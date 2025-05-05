@@ -8,14 +8,20 @@
       "DVI-D-1"
       "HDMI-A-1"
     ];
-    modules-left = [ "sway/workspaces" "sway/mode" "wlr/taskbar" ];
+    modules-left = [ /* "wlr/workspaces" */ /* "sway/mode" */ "wlr/taskbar" ];
     modules-center = [ "sway/window" "custom/hello-from-waybar" ];
-    modules-right = [ "mpd" "custom/mymodule#with-css-id" "temperature" ];
+    modules-right = [ "tray" ];
 
     "sway/workspaces" = {
-      disable-scroll = true;
+      disable-scroll = false;
       all-outputs = true;
     };
+
+    "wlr/taskbar" = {
+      on-click = "activate"; # IDK works sometimes?
+      on-click-middle = "minimize";
+    };
+
     "custom/hello-from-waybar" = {
       format = "hello {}";
       max-length = 90;

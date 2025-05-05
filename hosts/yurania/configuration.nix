@@ -1,12 +1,12 @@
 # yurania is the desktop
-{ config, inputs, pkgs, ... }:
-
+{ config, inputs, pkgs, lib, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/nixos/yurania.nix
       inputs.home-manager.nixosModules.default
+      ./yurnia-desktop.nix
     ];
 
   home-manager.backupFileExtension = "backup";
@@ -15,12 +15,6 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
-
-  # Hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
 
   networking.hostName = "yurania"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -31,6 +25,9 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Tailscale
+  services.tailscale.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
@@ -150,7 +147,13 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    ports = [ 41022 ];
+    settings = {
+      PasswordAuthentication = false;
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

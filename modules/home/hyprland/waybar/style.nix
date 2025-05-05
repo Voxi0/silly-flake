@@ -65,7 +65,7 @@ with config.colorScheme.palette; ''
     }
 
     #waybar {
-        background-color: transparent;
+        background-color: #1A1525;
         margin: 0;
         padding: 0;
     }
