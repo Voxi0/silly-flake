@@ -28,15 +28,17 @@
     # Window switcher hyprland
     hyprswitch.url = "github:h3rmt/hyprswitch/release";
 
-    # What desktop to use
-    desktop = {
-      hyprland.enable = true;
-      plasma.enable = false;
-    };
   };
 
   # Flake actions - What to do after fetching all the inputs/dependencies
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: let
+    # What desktop to use
+    desktop = { # These will not work on all systems
+      hyprland.enable = true;
+      plasma.enable = false;
+      # gnome.enable = false; # Dummy
+    };
+  in {
     # NixOS configurations
     nixosConfigurations.linda = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -48,7 +50,7 @@
       ];
     };
    nixosConfigurations.yurania = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs; inherit desktop;};
       modules = [
         ./hosts/yurania/configuration.nix
         inputs.home-manager.nixosModules.default

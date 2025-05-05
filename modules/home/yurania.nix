@@ -1,6 +1,11 @@
-_: {
+{ optional, desktop, ... }:
+{
   # Import Nix modules
   imports = [
-    ./codium.nix ./hyprland ./bash.nix ./git.nix
+    ./codium.nix
+    ./bash.nix
+    ./git.nix
+
+    ./hyprland/hyprland.nix
   ];
 }

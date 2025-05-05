@@ -8,12 +8,6 @@
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 
-  # Hyprland
-  wayland.windowManager.hyprland.enable = true; # enable Hyprland
-
-  # Optional, hint Electron apps to use Wayland:
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
-
   # Home
   home = {
     # User information
