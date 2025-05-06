@@ -153,6 +153,7 @@
     ports = [ 41022 ];
     settings = {
       PasswordAuthentication = false;
+      X11Forwarding = false; 
     };
   };
 
