@@ -17,13 +17,23 @@
       environment.systemPackages = with pkgs; [
         inputs.hyprswitch.packages.x86_64-linux.default
       ];
+
+      # Setup sddm
+      services.xserver.enable = true;
+      services.displayManager.sddm.enable = true;
+      services.displayManager.sddm.wayland.enable = true;
+      # services.xserver.displayManager.sddm.theme 
     })
 
     (lib.mkIf config.desktop.plasma.enable {
-      programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-      };
+      xdg.portal.enable = true;
+
+      # Setup sddm
+      services.xserver.enable = true;
+      services.displayManager.sddm.enable = true;
+      services.displayManager.sddm.wayland.enable = true;
+      # services.xserver.displayManager.sddm.theme 
+      services.desktopManager.plasma6.enable = true;
     })
   ];
 }
