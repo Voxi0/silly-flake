@@ -1,8 +1,8 @@
 { lib, config, pkgs, ... }: 
 {
-  # imports = [
-  #   ../../../hosts/yurania/options.nix
-  # ];
+  imports = [
+    ../../../hosts/yurania/options.nix
+  ];
 
   config = lib.mkIf config.desktop.hyprland.enable {
     # Install hyprland

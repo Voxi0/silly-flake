@@ -3,12 +3,12 @@
 {
   imports =
     [ 
+      ./yurnia-desktop.nix
       ./options.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/nixos/yurania.nix
       inputs.home-manager.nixosModules.default
-      ./yurnia-desktop.nix
     ];
 
   home-manager.backupFileExtension = "backup";
