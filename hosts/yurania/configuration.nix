@@ -53,7 +53,7 @@
 
   # Enable packages, Flatpak and VSCodium
   lucy-packages.enable = true;
-  lucy-flatpak.enable = true;
+  lucy-flatpak.enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

@@ -10,9 +10,7 @@
       programs.hyprland = {
         enable = true;
         xwayland.enable = true;
-      };
-      
-      xdg.portal = { enable = true; extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; }; 
+      }; 
 
       environment.systemPackages = with pkgs; [
         inputs.hyprswitch.packages.x86_64-linux.default
@@ -26,14 +24,18 @@
     })
 
     (lib.mkIf config.desktop.plasma.enable {
-      xdg.portal.enable = true;
-
       # Setup sddm
       services.xserver.enable = true;
       services.displayManager.sddm.enable = true;
-      services.displayManager.sddm.wayland.enable = true;
+      # services.displayManager.sddm.wayland.enable = true;
       # services.xserver.displayManager.sddm.theme 
       services.desktopManager.plasma6.enable = true;
+
+      qt = {
+        enable = true;
+        platformTheme = "gnome";
+        style = "adwaita-dark";
+      };
     })
   ];
 }
