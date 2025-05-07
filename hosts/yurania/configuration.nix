@@ -11,8 +11,6 @@
       inputs.home-manager.nixosModules.default
     ];
 
-  home-manager.backupFileExtension = "backup";
-
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -73,7 +71,7 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  services.xserver.displayManager.sddm.theme 
+  # services.xserver.displayManager.sddm.theme 
   services.desktopManager.plasma6.enable = true;
 
   # Audio - Pipewire
@@ -129,12 +127,14 @@
     wget
     ghostty
     pavucontrol
+    lutris
   ];
 
   # Home manager
   home-manager = {
     sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "rebuild";
     users = {
       "lucy" = import ./home.nix;
     };
@@ -165,6 +165,15 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 47984 47989 47990 48010 ];
+    allowedUDPPortRanges = [
+      { from = 47998; to = 48000; }
+      { from = 8000; to = 8010; }
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

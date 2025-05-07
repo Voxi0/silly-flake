@@ -36,13 +36,14 @@
       docker docker-compose
 
       # GUI but not a Flatpak
-      grimblast
+      mission-center
       vlc
       kdePackages.dolphin
       
       # hyprland stuff
       rofi
       hyprpaper
+      grimblast # screenshot
     ];
 
     # Manage dotfiles
