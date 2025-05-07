@@ -53,7 +53,9 @@
 
   # Enable packages, Flatpak and VSCodium
   lucy-packages.enable = true;
-  lucy-flatpak.enable = false;
+  lucy-flatpak.enable = true;
+
+  programs.dconf.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -71,7 +73,8 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  # services.xserver.displayManager.sddm.theme 
+  services.xserver.displayManager.sddm.theme 
+  services.desktopManager.plasma6.enable = true;
 
   # Audio - Pipewire
   services.pulseaudio.enable = false;

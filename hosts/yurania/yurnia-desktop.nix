@@ -25,17 +25,9 @@
 
     (lib.mkIf config.desktop.plasma.enable {
       # Setup sddm
-      services.xserver.enable = true;
-      services.displayManager.sddm.enable = true;
+      # services.displayManager.sddm.enable = true;
       # services.displayManager.sddm.wayland.enable = true;
       # services.xserver.displayManager.sddm.theme 
-      services.desktopManager.plasma6.enable = true;
-
-      qt = {
-        enable = true;
-        platformTheme = "gnome";
-        style = "adwaita-dark";
-      };
     })
   ];
 }
