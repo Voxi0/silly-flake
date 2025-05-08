@@ -19,7 +19,6 @@ in {
         "dev.vencord.Vesktop"
         "app.zen_browser.zen"
         "org.signal.Signal"
-        # "io.missioncenter.MissionCenter"
         "com.github.KRTirtho.Spotube"
         "org.prismlauncher.PrismLauncher"
 

@@ -90,6 +90,8 @@
 
   programs.bash.completion.enable = true;
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -128,18 +130,20 @@
     ghostty
     pavucontrol
     lutris
+    wine
+    qpwgraph
   ];
 
   # Home manager
   home-manager = {
     sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "rebuild";
+    backupFileExtension = "bak";
     users = {
       "lucy" = import ./home.nix;
     };
   };
-
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;

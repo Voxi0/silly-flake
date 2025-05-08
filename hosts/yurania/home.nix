@@ -6,7 +6,10 @@
   ];
 
   # Let Home Manager install and manage itself
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+    # backupFileExtension = "backup";
+  };
 
   # Home
   home = {
@@ -17,11 +20,6 @@
     # Environment variables to always set at login
     sessionVariables.EDITOR = "codium";
 
-    # Shell aliases
-    shellAliases = {
-      rebuild = "sudo nixos-rebuild switch --flake ~/nixos#yurania";
-    };
-
     # User packages
     packages = with pkgs; [
       # CLI utilities
@@ -29,6 +27,7 @@
       wget
       fastfetch
       btop
+      caligula
 
       # Development
       cargo rustfmt rustc
@@ -39,6 +38,7 @@
       mission-center
       vlc
       kdePackages.dolphin
+      blockbench
       
       # hyprland stuff
       rofi
