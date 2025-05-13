@@ -28,9 +28,10 @@
       fastfetch
       btop
       caligula
+      unrar-free
 
       # Development
-      cargo rustfmt rustc
+      cargo rustfmt rustc rustup
       gcc # Needed to compile rust
       docker docker-compose
 
@@ -39,6 +40,9 @@
       vlc
       kdePackages.dolphin
       blockbench
+      gedit
+      kdePackages.ktorrent
+      clamtk
       
       # hyprland stuff
       rofi

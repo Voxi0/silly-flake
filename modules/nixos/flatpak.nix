@@ -21,6 +21,7 @@ in {
         "org.signal.Signal"
         "com.github.KRTirtho.Spotube"
         "org.prismlauncher.PrismLauncher"
+        "com.obsproject.Studio"
 
         # Image editor
         "page.kramo.Sly"

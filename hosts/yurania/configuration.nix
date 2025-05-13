@@ -11,6 +11,9 @@
       inputs.home-manager.nixosModules.default
     ];
 
+  # Enable nix-command
+  #nix.settings.experimental-features = [ "nix-command" ];
+
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -45,7 +48,7 @@
   users.users.lucy = {
     isNormalUser = true;
     description = "lucy";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" ];
     packages = with pkgs; [];
   };
 
@@ -132,6 +135,8 @@
     lutris
     wine
     qpwgraph
+    android-studio
+    xorg.libX11 # cause macroquad is fun
   ];
 
   # Home manager
