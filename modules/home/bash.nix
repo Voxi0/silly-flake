@@ -73,6 +73,8 @@
             echo
             date
         fi
+	
+	export PATH=$PATH:/home/lucy/.cargo/bin
     '';   
 
     home.file.".bash_aliases".text = ''

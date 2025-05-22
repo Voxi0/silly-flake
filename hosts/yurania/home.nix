@@ -31,9 +31,11 @@
       unrar-free
 
       # Development
-      cargo rustfmt rustc rustup
+      cargo rustfmt rustc
       gcc # Needed to compile rust
       docker docker-compose
+
+      pkg-config # Idk cargo-mobile2 needs it
 
       # GUI but not a Flatpak
       mission-center
@@ -43,11 +45,13 @@
       gedit
       kdePackages.ktorrent
       clamtk
+      ckan
       
       # hyprland stuff
       rofi
       hyprpaper
       grimblast # screenshot
+      gparted
     ];
 
     # Manage dotfiles

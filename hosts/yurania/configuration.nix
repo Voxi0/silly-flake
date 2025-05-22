@@ -12,7 +12,7 @@
     ];
 
   # Enable nix-command
-  #nix.settings.experimental-features = [ "nix-command" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -31,6 +31,8 @@
 
   # Tailscale
   services.tailscale.enable = true;
+  # Enable tailscale fs
+  services.davfs2.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
@@ -48,8 +50,25 @@
   users.users.lucy = {
     isNormalUser = true;
     description = "lucy";
-    extraGroups = [ "networkmanager" "wheel" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirtd" "docker" ];
     packages = with pkgs; [];
+  };
+
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
+  # Docker and podman setup
+  # virtualisation.docker.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   # Enable packages, Flatpak and VSCodium
@@ -133,17 +152,19 @@
     ghostty
     pavucontrol
     lutris
-    wine
+    wineWowPackages.stable
+    winetricks
     qpwgraph
     android-studio
-    xorg.libX11 # cause macroquad is fun
+    mono
+    sshfs
   ];
 
   # Home manager
   home-manager = {
     sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "bak";
+    backupFileExtension = "bak-again6";
     users = {
       "lucy" = import ./home.nix;
     };

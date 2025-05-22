@@ -29,6 +29,13 @@
       fsType = "btrfs";
     };
 
+  # the nvme
+  fileSystems."/media/dataC" =
+    { device = "/dev/disk/by-uuid/fc5d8dc7-d0c4-451a-b923-6926b4578b20";
+      fsType = "btrfs";
+    };
+
+
    swapDevices = [ {
     device = "/swapfile";
     size = 16*1024;

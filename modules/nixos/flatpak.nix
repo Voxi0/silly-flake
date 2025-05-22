@@ -22,6 +22,7 @@ in {
         "com.github.KRTirtho.Spotube"
         "org.prismlauncher.PrismLauncher"
         "com.obsproject.Studio"
+        "io.github.ryubing.Ryujinx"
 
         # Image editor
         "page.kramo.Sly"
