@@ -11,6 +11,9 @@
       inputs.home-manager.nixosModules.default
     ];
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Enable nix-command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -76,9 +79,6 @@
   lucy-flatpak.enable = true;
 
   programs.dconf.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Nvidia setup
   # Enable OpenGL
@@ -162,11 +162,12 @@
 
   # Home manager
   home-manager = {
+    useGlobalPkgs = true;
     sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "bak-again6";
-    users = {
-      "lucy" = import ./home.nix;
+    backupFileExtension = "bak-again7";
+    users.lucy = {
+      imports = [ ./home.nix ];
     };
   };
   

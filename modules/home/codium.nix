@@ -7,9 +7,8 @@
   config = {
     programs.vscode = {
       package = pkgs.vscodium.fhsWithPackages (ps: with ps; [ 
-            cargo rustfmt rustc rustup
             gcc
-            
+
             pkg-config
             alsa-lib
             vulkan-loader

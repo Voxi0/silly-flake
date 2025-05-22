@@ -31,9 +31,14 @@
       unrar-free
 
       # Development
-      cargo rustfmt rustc
+      # cargo rustfmt rustc
+      (rust-bin.stable.latest.default.override {
+        extensions = [ "rust-src" ];
+      })
       gcc # Needed to compile rust
       docker docker-compose
+      direnv
+      nix-direnv
 
       pkg-config # Idk cargo-mobile2 needs it
 

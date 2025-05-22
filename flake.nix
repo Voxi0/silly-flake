@@ -28,10 +28,22 @@
     # Window switcher hyprland
     hyprswitch.url = "github:h3rmt/hyprswitch/release";
 
+    # rust package
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   # Flake actions - What to do after fetching all the inputs/dependencies
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, rust-overlay, ... }@inputs: let
+    #nixpkgs.config.allowUnfree = true;
+    system = "x86_64-linux";
+
+    # Define pkgs with the rust overlay applied
+    pkgsFor = system: import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+      overlays = [ rust-overlay.overlays.default ];
+    };
+  in {
     # NixOS configurations
     nixosConfigurations.linda = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -43,7 +55,10 @@
       ];
     };
    nixosConfigurations.yurania = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {
+        inherit inputs;
+        pkgs = pkgsFor "x86_64-linux";
+        };
       modules = [
         ./hosts/yurania/configuration.nix
         inputs.home-manager.nixosModules.default
