@@ -40,7 +40,11 @@
     # Define pkgs with the rust overlay applied
     pkgsFor = system: import nixpkgs {
       inherit system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;      
+        # for godot android export
+        android_sdk.accept_license = true;
+      };
       overlays = [ rust-overlay.overlays.default ];
     };
   in {

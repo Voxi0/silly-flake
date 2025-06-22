@@ -53,7 +53,7 @@
   users.users.lucy = {
     isNormalUser = true;
     description = "lucy";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirtd" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirtd" "docker" "audio" ];
     packages = with pkgs; [];
   };
 
@@ -108,6 +108,21 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
+
+    extraConfig.pipewire."92-low-latency" = {
+      "context.properties" = {
+        "default.clock.rate" = 48000;
+        "default.clock.quantum" = 2048;
+        "default.clock.min-quantum" = 1024;
+        "default.clock.max-quantum" = 2048;
+      };
+    };
+  };
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
 
   programs.bash.completion.enable = true;
@@ -155,9 +170,22 @@
     wineWowPackages.stable
     winetricks
     qpwgraph
-    android-studio
     mono
     sshfs
+
+    weylus # use linda as a drawing tablet
+
+    ns-usbloader # Install homebrew onto a switch / custom apps
+
+    # godot stuff
+    godot
+    # for godot android export
+    # android-studio
+    # android-tools
+    # androidenv.androidPkgs.androidsdk
+    # androidenv.androidPkgs.emulator
+    # androidenv.androidPkgs.ndk-bundle
+    # jdk # Java
   ];
 
   # Home manager
@@ -165,7 +193,8 @@
     useGlobalPkgs = true;
     sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "bak-again7";
+    backupFileExtension = "bak-again16";
+    # Users
     users.lucy = {
       imports = [ ./home.nix ];
     };
@@ -178,6 +207,22 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  # To run linux bins for other distros
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+    xorg.libXcursor
+    xorg.libXinerama
+    xorg.libXext
+    xorg.libXrandr
+    xorg.libXrender
+    xorg.libX11
+    xorg.libXi
+    libGL
+    alsa-lib
+  ];
 
   # List services that you want to enable:
 

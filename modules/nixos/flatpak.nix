@@ -23,6 +23,8 @@ in {
         "org.prismlauncher.PrismLauncher"
         "com.obsproject.Studio"
         "io.github.ryubing.Ryujinx"
+        "io.github.MakovWait.Godots"
+        "org.kde.krita"
 
         # Image editor
         "page.kramo.Sly"

@@ -51,6 +51,12 @@
       kdePackages.ktorrent
       clamtk
       ckan
+      blender
+      libresprite
+      kdePackages.kdenlive
+      nexusmods-app
+      bottles
+      protontricks
       
       # hyprland stuff
       rofi
