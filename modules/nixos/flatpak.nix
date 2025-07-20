@@ -25,6 +25,8 @@ in {
         "io.github.ryubing.Ryujinx"
         "io.github.MakovWait.Godots"
         "org.kde.krita"
+        "de.z_ray.Facetracker"
+        "sh.ppy.osu"
 
         # Image editor
         "page.kramo.Sly"

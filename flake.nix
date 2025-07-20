@@ -30,7 +30,9 @@
 
     # rust package
     rust-overlay.url = "github:oxalica/rust-overlay";
-  };
+    
+    vscodium-server.url = "github:unicap/nixos-vscodium-server";  
+};
 
   # Flake actions - What to do after fetching all the inputs/dependencies
   outputs = { self, nixpkgs, rust-overlay, ... }@inputs: let

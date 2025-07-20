@@ -22,6 +22,8 @@
 
     # User packages
     packages = with pkgs; [
+      # Replace gnu core utils with uutils
+      (pkgs.uutils-coreutils.override { prefix = ""; })
       # CLI utilities
       vim
       wget
@@ -57,7 +59,9 @@
       nexusmods-app
       bottles
       protontricks
-      
+      piper
+      audacity
+
       # hyprland stuff
       rofi
       hyprpaper
@@ -90,10 +94,10 @@
   gtk = {
     enable = true;
 
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
-    };
+    # theme = {
+    #   package = pkgs.flat-remix-gtk;
+    #   name = "Flat-Remix-GTK-Grey-Darkest";
+    # };
 
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
