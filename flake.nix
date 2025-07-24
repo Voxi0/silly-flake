@@ -2,7 +2,7 @@
   # Flake description (duh)
   description = "Lucy's silly flake";
 
-  # Flake inputs/dependencies
+  # Dependencies
   inputs = {
     # Nix packages collection
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -13,22 +13,22 @@
     # A collection of NixOS modules covering hardware quirks
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # Home Manager - To manage user programs and dotfiles
+    # To manage user programs and dotfiles
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # SOPS - Secrets provisioning for NixOS
+    # Secrets provisioning for NixOS
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Window switcher hyprland
+    # Hyprland window switcher
     hyprswitch.url = "github:h3rmt/hyprswitch/release";
 
-    # rust package
+    # Overlay of binary Rust toolchains
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     vscodium-server.url = "github:unicap/nixos-vscodium-server";
@@ -40,45 +40,47 @@
     rust-overlay,
     ...
   } @ inputs: let
+		# Generate packages for specified system
     system = "x86_64-linux";
     pkgs = pkgsFor system;
-    pkgsFor = system:
-      import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          # for godot android export
-          android_sdk.accept_license = true;
-        };
-        overlays = [rust-overlay.overlays.default];
-      };
+    pkgsFor = system: import nixpkgs {
+			inherit system;
+			overlays = [rust-overlay.overlays.default];
+			config = {
+				allowUnfree = true;
+				# for godot android export
+				android_sdk.accept_license = true;
+			};
+		};
   in {
     # Development environment to keep this codebase clean
     formatter.${system} = pkgs.alejandra;
     devShells.${system}.default = pkgs.mkShellNoCC {
       buildInputs = with pkgs; [
-        deadnix
-        statix
+        deadnix # Scan Nix files for dead code
+        statix # Analyze and provide linting + suggestions for Nix
       ];
     };
 
     # NixOS configurations
-    nixosConfigurations.linda = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/linda/configuration.nix
-        inputs.home-manager.nixosModules.default
-        inputs.nix-flatpak.nixosModules.nix-flatpak
-        inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
-      ];
-    };
-    nixosConfigurations.yurania = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs pkgs;};
-      modules = [
-        ./hosts/yurania/configuration.nix
-        inputs.home-manager.nixosModules.default
-        inputs.nix-flatpak.nixosModules.nix-flatpak
-      ];
-    };
+    nixosConfigurations = {
+			linda = nixpkgs.lib.nixosSystem {
+				specialArgs = {inherit inputs;};
+				modules = [
+					./hosts/linda/configuration.nix
+					inputs.home-manager.nixosModules.default
+					inputs.nix-flatpak.nixosModules.nix-flatpak
+					inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
+				];
+			};
+			yurania = nixpkgs.lib.nixosSystem {
+				specialArgs = {inherit inputs pkgs;};
+				modules = [
+					./hosts/yurania/configuration.nix
+					inputs.home-manager.nixosModules.default
+					inputs.nix-flatpak.nixosModules.nix-flatpak
+				];
+			};
+		};
   };
 }
