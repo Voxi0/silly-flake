@@ -30,26 +30,38 @@
 
     # rust package
     rust-overlay.url = "github:oxalica/rust-overlay";
-    
-    vscodium-server.url = "github:unicap/nixos-vscodium-server";  
-};
+
+    vscodium-server.url = "github:unicap/nixos-vscodium-server";
+  };
 
   # Flake actions - What to do after fetching all the inputs/dependencies
-  outputs = { self, nixpkgs, rust-overlay, ... }@inputs: let
-    #nixpkgs.config.allowUnfree = true;
+  outputs = {
+    nixpkgs,
+    rust-overlay,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
-
-    # Define pkgs with the rust overlay applied
-    pkgsFor = system: import nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;      
-        # for godot android export
-        android_sdk.accept_license = true;
+    pkgs = pkgsFor system;
+    pkgsFor = system:
+      import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          # for godot android export
+          android_sdk.accept_license = true;
+        };
+        overlays = [rust-overlay.overlays.default];
       };
-      overlays = [ rust-overlay.overlays.default ];
-    };
   in {
+    # Development environment to keep this codebase clean
+    formatter.${system} = pkgs.alejandra;
+    devShells.${system}.default = pkgs.mkShellNoCC {
+      buildInputs = with pkgs; [
+        deadnix
+        statix
+      ];
+    };
+
     # NixOS configurations
     nixosConfigurations.linda = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -60,11 +72,8 @@
         inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
       ];
     };
-   nixosConfigurations.yurania = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
-        pkgs = pkgsFor "x86_64-linux";
-        };
+    nixosConfigurations.yurania = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs pkgs;};
       modules = [
         ./hosts/yurania/configuration.nix
         inputs.home-manager.nixosModules.default

@@ -1,5 +1,8 @@
-{ lib, config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   mainBar = with config.colorScheme.palette; {
     layer = "top";
     position = "top";
@@ -8,9 +11,17 @@
       "DVI-D-1"
       "HDMI-A-1"
     ];
-    modules-left = [ /* "wlr/workspaces" */ /* "sway/mode" */ "wlr/taskbar" ];
-    modules-center = [ "sway/window" "custom/hello-from-waybar" ];
-    modules-right = [ "tray" ];
+    modules-left = [
+      /*
+      "wlr/workspaces"
+      */
+      /*
+      "sway/mode"
+      */
+      "wlr/taskbar"
+    ];
+    modules-center = ["sway/window" "custom/hello-from-waybar"];
+    modules-right = ["tray"];
 
     "sway/workspaces" = {
       disable-scroll = false;

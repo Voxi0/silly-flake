@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   # Import Nix modules
   imports = [
     inputs.sops-nix.homeManagerModules.sops
@@ -8,10 +12,10 @@
   # Let Home Manager install and manage itself
   programs.home-manager.enable = true;
 
-
   options = {
     # What desktop to use
-    desktop = { # These will not work on all systems
+    desktop = {
+      # These will not work on all systems
       hyprland.enable = lib.mkEnableOption {
         default = true;
       };
@@ -39,15 +43,19 @@
     # User packages
     packages = with pkgs; [
       # CLI utilities
-      vim wget git fastfetch
-      
+      vim
+      wget
+      git
+      fastfetch
+
       # System tools
       sops
 
       # Development
       # cargo rustfmt rustc
       gcc # Needed to compile rust
-      docker docker-compose
+      docker
+      docker-compose
 
       # GUI but not a Flatpak
       vlc

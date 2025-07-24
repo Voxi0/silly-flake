@@ -1,8 +1,8 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   options = {
     # What desktop to use
-    desktop = { # These will not work on all systems
+    desktop = {
+      # These will not work on all systems
       hyprland.enable = lib.mkEnableOption {
         default = false;
       };

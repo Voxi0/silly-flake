@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }: let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.main-user;
 in {
   # Module options
@@ -15,7 +20,7 @@ in {
     users.users.${cfg.userName} = {
       isNormalUser = true;
       description = cfg.userName;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = ["networkmanager" "wheel"];
       shell = pkgs.bash;
     };
   };

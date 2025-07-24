@@ -1,324 +1,324 @@
 {config, ...}:
 with config.colorScheme.palette; ''
-    /*
-    * * * * * * * * * * * * * * * * * * * * * * * * *
-    * Author: Eduardo de Sá Coêlho Ribeiro Costa   	*
-    * Github: edudscrc							   	*
-    *											   	*
-    * Waybar v0.12.0						   	    *
-    * * * * * * * * * * * * * * * * * * * * * * * * *
-    */
-
-    @define-color modules_background #1A1525;
-    @define-color modules_border #2A233D;
-
-    @define-color archicon_idle #0B80E8;
-    @define-color archicon_hover #CC81F1;
-
-    @define-color workspaces_button_hover #000000;
-    @define-color workspaces_button_idle #ffffff;
-
-    @define-color spotify_idle #A55EF0;
-    @define-color spotify_hover #CC81F1;
-
-    @define-color tray_menu #1A1525;
-    @define-color tray_menu_border #2A233D;
-    @define-color tray_menu_item #CC81F1;
-    @define-color tray_menu_item_hover #CC81F1;
-    @define-color tray_menu_item_hover_background #2A233D;
-
-    @define-color clock_idle #0B80E8;
-    @define-color clock_hover #CC81F1;
-
-    @define-color brightness_idle #0B80E8;
-    @define-color brightness_hover #CC81F1;
-
-    @define-color sound_idle #0B80E8;
-    @define-color sound_hover #CC81F1;
-
-    @define-color bluetooth_idle #000000;
-    @define-color bluetooth_hover #CC81F1;
-
-    @define-color network_idle #000000;
-    @define-color network_hover #CC81F1;
-
-    @define-color power_idle #ffffff;
-    @define-color power_hover #CC81F1;
-
-    @define-color tooltip_background #1A1525;
-    @define-color tooltip_text #CC81F1;
-
-    /*----------------*/
-    /*-----GLOBAL-----*/
-    /*----------------*/
-
-    * {
-        font-family: "JetBrains Mono", "JetBrainsMono Nerd Font";
-        font-weight: 600;
-        margin: 0;
-        padding: 0;
-    }
-
-    .bar_2k,
-    .bar_1080p {
-        font-size: 16px;
-    }
-
-    #waybar {
-        background-color: #1A1525;
-        margin: 0;
-        padding: 0;
-    }
-
-    .modules-left,
-    .modules-center,
-    .modules-right {
-        margin-top: 4px;
-        margin-bottom: 8px;
-    }
-
-    #group-left,
-    #group-center,
-    #group-right {
-        border: 2px solid @modules_border;
-        border-radius: 2px;
-        box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 1.0);
-
-        background-color: @modules_background;
-
-        margin: 0px 6px;
-    }
-
-    /*--------------------*/
-    /*-----WORKSPACES-----*/
-    /*--------------------*/
-
-    #workspaces {
-        margin-top: 4px;
-        margin-bottom: 4px;
-    }
-
-    #workspaces button {
-        color: @workspaces_button_idle;
-        background-color: #2A233D;
+  /*
+  * * * * * * * * * * * * * * * * * * * * * * * * *
+  * Author: Eduardo de Sá Coêlho Ribeiro Costa   	*
+  * Github: edudscrc							   	*
+  *											   	*
+  * Waybar v0.12.0						   	    *
+  * * * * * * * * * * * * * * * * * * * * * * * * *
+  */
+
+  @define-color modules_background #1A1525;
+  @define-color modules_border #2A233D;
+
+  @define-color archicon_idle #0B80E8;
+  @define-color archicon_hover #CC81F1;
+
+  @define-color workspaces_button_hover #000000;
+  @define-color workspaces_button_idle #ffffff;
+
+  @define-color spotify_idle #A55EF0;
+  @define-color spotify_hover #CC81F1;
+
+  @define-color tray_menu #1A1525;
+  @define-color tray_menu_border #2A233D;
+  @define-color tray_menu_item #CC81F1;
+  @define-color tray_menu_item_hover #CC81F1;
+  @define-color tray_menu_item_hover_background #2A233D;
+
+  @define-color clock_idle #0B80E8;
+  @define-color clock_hover #CC81F1;
+
+  @define-color brightness_idle #0B80E8;
+  @define-color brightness_hover #CC81F1;
+
+  @define-color sound_idle #0B80E8;
+  @define-color sound_hover #CC81F1;
+
+  @define-color bluetooth_idle #000000;
+  @define-color bluetooth_hover #CC81F1;
+
+  @define-color network_idle #000000;
+  @define-color network_hover #CC81F1;
+
+  @define-color power_idle #ffffff;
+  @define-color power_hover #CC81F1;
 
-        border-radius: 2px;
-        margin: 0 2px;
-        padding: 0 6px;
+  @define-color tooltip_background #1A1525;
+  @define-color tooltip_text #CC81F1;
+
+  /*----------------*/
+  /*-----GLOBAL-----*/
+  /*----------------*/
+
+  * {
+      font-family: "JetBrains Mono", "JetBrainsMono Nerd Font";
+      font-weight: 600;
+      margin: 0;
+      padding: 0;
+  }
+
+  .bar_2k,
+  .bar_1080p {
+      font-size: 16px;
+  }
+
+  #waybar {
+      background-color: #1A1525;
+      margin: 0;
+      padding: 0;
+  }
+
+  .modules-left,
+  .modules-center,
+  .modules-right {
+      margin-top: 4px;
+      margin-bottom: 8px;
+  }
 
-        transition: color 0.3s;
-    }
+  #group-left,
+  #group-center,
+  #group-right {
+      border: 2px solid @modules_border;
+      border-radius: 2px;
+      box-shadow: 0px 2px 3px 2px rgba(0, 0, 0, 1.0);
 
-    #workspaces button.active {
-        color: @workspaces_button_hover;
-        background-color: #CC81F1;
-    }
+      background-color: @modules_background;
+
+      margin: 0px 6px;
+  }
 
-    #workspaces button:hover {
-        color: @workspaces_button_hover;
-        
-        transition: color 0.3s;
-        
-        background: none;
-        background-color: #CC81F1;
-        box-shadow: none;
-        text-shadow: none;
-        transition: none;
-        border-color: transparent;
-    }
+  /*--------------------*/
+  /*-----WORKSPACES-----*/
+  /*--------------------*/
 
-    /*-----CUSTOM SPOTIFY-----*/
+  #workspaces {
+      margin-top: 4px;
+      margin-bottom: 4px;
+  }
 
-    #custom-spotify {
-        color: @spotify_idle;
+  #workspaces button {
+      color: @workspaces_button_idle;
+      background-color: #2A233D;
 
-        padding: 0 3px 0 9px;
-        transition: color 0.3s;
-    }
+      border-radius: 2px;
+      margin: 0 2px;
+      padding: 0 6px;
 
-    #custom-spotify:hover {
-        color: @spotify_hover;
+      transition: color 0.3s;
+  }
 
-        transition: color 0.3s;
-    }
+  #workspaces button.active {
+      color: @workspaces_button_hover;
+      background-color: #CC81F1;
+  }
 
-    /*-----TRAY-----*/
+  #workspaces button:hover {
+      color: @workspaces_button_hover;
 
-    #tray {
-        padding: 0 6px;
-    }
+      transition: color 0.3s;
 
-    #tray menu {
-        background-color: @tray_menu;
-        border: 1px solid @tray_menu_border;
-        padding: 6px 0;
-    }
+      background: none;
+      background-color: #CC81F1;
+      box-shadow: none;
+      text-shadow: none;
+      transition: none;
+      border-color: transparent;
+  }
 
-    #tray menu menuitem {
-        color: @tray_menu_item;
-    }
+  /*-----CUSTOM SPOTIFY-----*/
 
-    #tray menu menuitem:hover {
-        color: @tray_menu_item_hover;
-        border: 0;
-        background-color: @tray_menu_item_hover_background;
-    }
+  #custom-spotify {
+      color: @spotify_idle;
 
-    /*---------------*/
-    /*-----CLOCK-----*/
-    /*---------------*/
+      padding: 0 3px 0 9px;
+      transition: color 0.3s;
+  }
 
-    #clock {
-        color: @clock_idle;
+  #custom-spotify:hover {
+      color: @spotify_hover;
 
-        padding: 0px 6px;
+      transition: color 0.3s;
+  }
 
-        transition: color 0.3s;
-    }
+  /*-----TRAY-----*/
 
-    #clock:hover {
-        color: @clock_hover;
+  #tray {
+      padding: 0 6px;
+  }
 
-        transition: color 0.3s;
-    }
+  #tray menu {
+      background-color: @tray_menu;
+      border: 1px solid @tray_menu_border;
+      padding: 6px 0;
+  }
 
-    /*-----------------------------------------*/
-    /*-----CUSTOM-WL-GAMMARELAY-BRIGHTNESS-----*/
-    /*-----------------------------------------*/
+  #tray menu menuitem {
+      color: @tray_menu_item;
+  }
 
-    #custom-wl-gammarelay-brightness {
-        color: @brightness_idle;
+  #tray menu menuitem:hover {
+      color: @tray_menu_item_hover;
+      border: 0;
+      background-color: @tray_menu_item_hover_background;
+  }
 
-        padding: 0 6px;
-        transition: color 0.3s;
-    }
+  /*---------------*/
+  /*-----CLOCK-----*/
+  /*---------------*/
 
-    #custom-wl-gammarelay-brightness:hover {
-        color: @brightness_hover;
+  #clock {
+      color: @clock_idle;
 
-        transition: color 0.3s;
-    }
+      padding: 0px 6px;
 
-    /*---------------------*/
-    /*-----WIREPLUMBER-----*/
-    /*---------------------*/
+      transition: color 0.3s;
+  }
 
-    #wireplumber {
-        color: @sound_idle;
+  #clock:hover {
+      color: @clock_hover;
 
-        padding: 0 6px;
-        transition: color 0.3s;
-    }
+      transition: color 0.3s;
+  }
 
-    #wireplumber:hover {
-        color: @sound_hover;
+  /*-----------------------------------------*/
+  /*-----CUSTOM-WL-GAMMARELAY-BRIGHTNESS-----*/
+  /*-----------------------------------------*/
 
-        transition: color 0.3s;
-    }
+  #custom-wl-gammarelay-brightness {
+      color: @brightness_idle;
 
-    /*-----GROUP END-----*/
+      padding: 0 6px;
+      transition: color 0.3s;
+  }
 
-    #group-end {
-        margin-top: 4px;
-        margin-bottom: 4px;
-    }
+  #custom-wl-gammarelay-brightness:hover {
+      color: @brightness_hover;
 
-    /*-----CUSTOM PIPE-----*/
+      transition: color 0.3s;
+  }
 
-    #custom-pipe {
-        font-size: 6px;
-        color: transparent;
-    }
+  /*---------------------*/
+  /*-----WIREPLUMBER-----*/
+  /*---------------------*/
 
-    /*-----BLUETOOTH-----*/
+  #wireplumber {
+      color: @sound_idle;
 
-    #bluetooth {
-        color: @bluetooth_idle;
+      padding: 0 6px;
+      transition: color 0.3s;
+  }
 
-        background-color: #0B80E8;
+  #wireplumber:hover {
+      color: @sound_hover;
 
-        border-radius: 2px;
+      transition: color 0.3s;
+  }
 
-        padding: 0 10px;
+  /*-----GROUP END-----*/
 
-        transition: color 0.3s;
-    }
+  #group-end {
+      margin-top: 4px;
+      margin-bottom: 4px;
+  }
 
-    #bluetooth.off {
-        background-color: grey;
-    }
+  /*-----CUSTOM PIPE-----*/
 
-    #bluetooth:hover {
-        color: @bluetooth_hover;
-        transition: color 0.3s;
-    }
+  #custom-pipe {
+      font-size: 6px;
+      color: transparent;
+  }
 
-    .bar_2k #bluetooth {
-        /* Global font size + 3px */
-        font-size: 21px;
-    }
+  /*-----BLUETOOTH-----*/
 
-    .bar_1080p #bluetooth {
-        /* Global font size + 3px */
-        font-size: 18px;
-    }
+  #bluetooth {
+      color: @bluetooth_idle;
 
-    /*-----NETWORK-----*/
+      background-color: #0B80E8;
 
-    #network {
-        color: @network_idle;
+      border-radius: 2px;
 
-        border-radius: 2px;
-        background-color: #4DCC90;
-        
-        transition: color 0.3s;
-    }
+      padding: 0 10px;
 
-    #network.wifi {
-        /* padding: 0 10px 0 2px; */
-    }
+      transition: color 0.3s;
+  }
 
-    #network.ethernet {
-        padding: 0 6px;
-    }
+  #bluetooth.off {
+      background-color: grey;
+  }
 
-    #network.disconnected {
-        /* padding: 0 6px 0 1px; */
-        background-color: grey;
-    }
+  #bluetooth:hover {
+      color: @bluetooth_hover;
+      transition: color 0.3s;
+  }
 
-    #network:hover {
-        color: @network_hover;
+  .bar_2k #bluetooth {
+      /* Global font size + 3px */
+      font-size: 21px;
+  }
 
-        transition: color 0.3s;
-    }
+  .bar_1080p #bluetooth {
+      /* Global font size + 3px */
+      font-size: 18px;
+  }
 
-    /*-----CUSTOM POWER-----*/
+  /*-----NETWORK-----*/
 
-    #custom-power {
-        color: @power_idle;
+  #network {
+      color: @network_idle;
 
-        padding: 0 15px 0 8px;
+      border-radius: 2px;
+      background-color: #4DCC90;
 
-        /* padding: 0 6px 0 6px; */
-        
-        transition: color 0.3s;
-    }
+      transition: color 0.3s;
+  }
 
-    #custom-power:hover {
-        color: @power_hover;
+  #network.wifi {
+      /* padding: 0 10px 0 2px; */
+  }
 
-        transition: color 0.3s;
-    }
+  #network.ethernet {
+      padding: 0 6px;
+  }
 
-    /*-----TOOLTIP-----*/
+  #network.disconnected {
+      /* padding: 0 6px 0 1px; */
+      background-color: grey;
+  }
 
-    tooltip {
-        background-color: @tooltip_background;
-    }
+  #network:hover {
+      color: @network_hover;
 
-    tooltip label {
-        color: @tooltip_text;
-    }
+      transition: color 0.3s;
+  }
+
+  /*-----CUSTOM POWER-----*/
+
+  #custom-power {
+      color: @power_idle;
+
+      padding: 0 15px 0 8px;
+
+      /* padding: 0 6px 0 6px; */
+
+      transition: color 0.3s;
+  }
+
+  #custom-power:hover {
+      color: @power_hover;
+
+      transition: color 0.3s;
+  }
+
+  /*-----TOOLTIP-----*/
+
+  tooltip {
+      background-color: @tooltip_background;
+  }
+
+  tooltip label {
+      color: @tooltip_text;
+  }
 
 ''

@@ -1,7 +1,7 @@
 # Linda is the ms surface. Isn't used rn
-{ lib, inputs, pkgs, ... }: {
+{inputs, ...}: {
   # Import Nix modules
-  imports = [ 
+  imports = [
     ./hardware-configuration.nix
     ../../modules/nixos
     inputs.home-manager.nixosModules.default
@@ -9,7 +9,7 @@
   ];
 
   # Nix / Nixpkgs
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nixpkgs.config.allowUnfree = true;
 
   # Virtual console and boot
@@ -82,8 +82,8 @@
 
   # Home manager
   home-manager = {
-    sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
-    extraSpecialArgs = { inherit inputs; };
+    sharedModules = [inputs.sops-nix.homeManagerModules.sops];
+    extraSpecialArgs = {inherit inputs;};
     users = {
       "lucy" = import ./home.nix;
     };

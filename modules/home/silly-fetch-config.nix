@@ -1,5 +1,4 @@
-{ lib, ... }: 
-{
+_: {
   home.file.".config/silly-fetch/config.json".text = ''
     {
       "layout": [

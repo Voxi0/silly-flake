@@ -1,20 +1,25 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}: {
   # Import Nix modules
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
   # Nixpkgs
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  
+
   # Hardware
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Boot
   boot = {
-    kernelModules = [ "kvm-intel" ];
-    extraModulePackages = [ ];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
     initrd = {
-      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-      kernelModules = [ ];
+      availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod"];
+      kernelModules = [];
       luks.devices."luks-bdcf371c-70c7-41f0-8bc0-4494cf5849e8".device = "/dev/disk/by-uuid/bdcf371c-70c7-41f0-8bc0-4494cf5849e8";
     };
   };
@@ -25,7 +30,7 @@
     "/boot" = {
       device = "/dev/disk/by-uuid/1154-325A";
       fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+      options = ["fmask=0077" "dmask=0077"];
     };
 
     # Root
@@ -37,7 +42,7 @@
 
   # Swap (Virtual memory)
   swapDevices = [
-    { device = "/dev/disk/by-uuid/2bf7895b-c761-4289-8b56-d53e7e5d5b23"; }
+    {device = "/dev/disk/by-uuid/2bf7895b-c761-4289-8b56-d53e7e5d5b23";}
   ];
 
   # Enable DHCP on each ethernet and wireless interface

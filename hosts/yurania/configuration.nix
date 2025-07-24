@@ -1,21 +1,24 @@
 # yurania is the desktop
-{ config, inputs, pkgs, lib, ... }:
 {
-  imports =
-    [ 
-      ./yurnia-desktop.nix
-      ./options.nix
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/nixos/yurania.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./yurnia-desktop.nix
+    ./options.nix
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/nixos/yurania.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Enable nix-command
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -23,9 +26,9 @@
   boot.loader.grub.useOSProber = true;
 
   # Kernel modules
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  boot.initrd.kernelModules = ["amdgpu"];
+
+  services.xserver.videoDrivers = ["amdgpu"];
 
   networking.hostName = "yurania"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -58,7 +61,7 @@
   users.users.lucy = {
     isNormalUser = true;
     description = "lucy";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirtd" "docker" "audio" ];
+    extraGroups = ["networkmanager" "wheel" "kvm" "libvirtd" "docker" "audio"];
     packages = with pkgs; [];
   };
 
@@ -89,7 +92,7 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
-  # services.xserver.displayManager.sddm.theme 
+  # services.xserver.displayManager.sddm.theme
   services.desktopManager.plasma6.enable = true;
 
   # cpu!
@@ -126,7 +129,6 @@
 
   programs.bash.completion.enable = true;
 
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -160,15 +162,15 @@
   # Home manager
   home-manager = {
     useGlobalPkgs = true;
-    sharedModules = [ inputs.sops-nix.homeManagerModules.sops ];
-    extraSpecialArgs = { inherit inputs; };
+    sharedModules = [inputs.sops-nix.homeManagerModules.sops];
+    extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "bak-again25";
     # Users
     users.lucy = {
-      imports = [ ./home.nix ];
+      imports = [./home.nix];
     };
   };
-  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
@@ -200,10 +202,10 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    ports = [ 41022 ];
+    ports = [41022];
     settings = {
       PasswordAuthentication = false;
-      X11Forwarding = false; 
+      X11Forwarding = false;
     };
   };
 
@@ -215,10 +217,16 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 47984 47989 47990 48010 ];
+    allowedTCPPorts = [47984 47989 47990 48010];
     allowedUDPPortRanges = [
-      { from = 47998; to = 48000; }
-      { from = 8000; to = 8010; }
+      {
+        from = 47998;
+        to = 48000;
+      }
+      {
+        from = 8000;
+        to = 8010;
+      }
     ];
   };
 
@@ -229,5 +237,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

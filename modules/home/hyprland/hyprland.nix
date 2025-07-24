@@ -1,5 +1,8 @@
-{ lib, config, pkgs, ... }: 
 {
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ../../../hosts/yurania/options.nix
   ];
@@ -24,31 +27,29 @@
       # Keybinds
       "$mod" = "alt";
       "$switch-key" = "tab";
-      bind =
-        [
-          "$mod, T, exec, $terminal"
-          #"$mod, D, exec, $browser"
-          #"$mod, F, exec, $files"
-          "$mod, Q, killactive"
-          "$mod, D, exec, $menu"
-          "$mod, $switch-key, exec, $window-switch"
-          "$mod, M, exit"
-          ", Print, exec, $scrot"
-          "Shift, Print, exec, $scrot-screen"
-        ];
-      
+      bind = [
+        "$mod, T, exec, $terminal"
+        #"$mod, D, exec, $browser"
+        #"$mod, F, exec, $files"
+        "$mod, Q, killactive"
+        "$mod, D, exec, $menu"
+        "$mod, $switch-key, exec, $window-switch"
+        "$mod, M, exit"
+        ", Print, exec, $scrot"
+        "Shift, Print, exec, $scrot-screen"
+      ];
+
       # Does this save the environment?
-      env = 
-        [
-          "HYPRCURSOR_SIZE,24"
-          "XCURSOR_SIZE,24"
+      env = [
+        "HYPRCURSOR_SIZE,24"
+        "XCURSOR_SIZE,24"
 
-          "GTK_IM_MODULE,cedilla"
-          "QT_IM_MODULE,cedilla"
+        "GTK_IM_MODULE,cedilla"
+        "QT_IM_MODULE,cedilla"
 
-          "GTK_THEME,ArchEVA-01"
-        ];
-      
+        "GTK_THEME,ArchEVA-01"
+      ];
+
       general = {
         gaps_in = 3;
         gaps_out = 6;

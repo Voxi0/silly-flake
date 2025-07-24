@@ -1,14 +1,19 @@
-{ lib, config, pkgs, ... }: let
-	cfg = config.lucy-flatpak;
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.lucy-flatpak;
 in {
   # Module options
   options.lucy-flatpak.enable = lib.mkEnableOption "Enable Lucy's Flatpak";
 
   # Configuration - Enable Flatpak for all users and automatically add Flathub
   config = lib.mkIf cfg.enable {
-    xdg.portal = { 
-      enable = true; 
-      extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ]; 
+    xdg.portal = {
+      enable = true;
+      extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
       config.common.default = "*";
     };
 

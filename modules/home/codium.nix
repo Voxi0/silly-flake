@@ -1,30 +1,35 @@
-{ lib, config, pkgs, ... }: 
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   # Module options
   options.lucy-codium.enable = lib.mkEnableOption "Enable Lucy's Codium";
 
   # Configuration - Enable and configure VSCodium
   config = {
     programs.vscode = {
-      package = pkgs.vscodium.fhsWithPackages (ps: with ps; [ 
-            gcc
+      package = pkgs.vscodium.fhsWithPackages (ps:
+        with ps; [
+          gcc
 
-            pkg-config
-            alsa-lib
-            vulkan-loader
-            vulkan-tools
-            vulkan-headers
-            libxkbcommon
-            wayland
-            xorg.libX11
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXrandr
-            mesa
-            udev
-            clang
-            lld 
-          ]);
+          pkg-config
+          alsa-lib
+          vulkan-loader
+          vulkan-tools
+          vulkan-headers
+          libxkbcommon
+          wayland
+          xorg.libX11
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXrandr
+          mesa
+          udev
+          clang
+          lld
+        ]);
       enable = true;
       profiles.default = {
         enableUpdateCheck = true;

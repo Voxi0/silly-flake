@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   # Import Nix modules
   imports = [
     inputs.sops-nix.homeManagerModules.sops
@@ -23,7 +27,7 @@
     # User packages
     packages = with pkgs; [
       # Replace gnu core utils with uutils
-      (pkgs.uutils-coreutils.override { prefix = ""; })
+      (pkgs.uutils-coreutils.override {prefix = "";})
       # CLI utilities
       vim
       wget
@@ -35,10 +39,11 @@
       # Development
       # cargo rustfmt rustc
       (rust-bin.stable.latest.default.override {
-        extensions = [ "rust-src" ];
+        extensions = ["rust-src"];
       })
       gcc # Needed to compile rust
-      docker docker-compose
+      docker
+      docker-compose
       direnv
       nix-direnv
 

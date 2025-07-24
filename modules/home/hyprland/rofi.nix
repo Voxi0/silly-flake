@@ -1,8 +1,6 @@
-{ lib, config, pkgs, ... }: 
-{
-    # packages.pkgs.rofi
-
-    home.file.".config/rofi/config.rasi".text = ''
+_: {
+  # packages.pkgs.rofi
+  home.file.".config/rofi/config.rasi".text = ''
     /*
     * * * * * * * * * * * * * * * * * * * * * * * * *
     * Author: Eduardo de Sá Coêlho Ribeiro Costa   	*
@@ -112,7 +110,7 @@
 
         padding: 12px;
         margin: 10px;
-        
+
         vertical-align: 0.5;
 
         border: 0;
@@ -174,5 +172,5 @@
     element alternate.normal {
         background-color: transparent;
     }
-    '';   
+  '';
 }

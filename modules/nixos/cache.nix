@@ -1,5 +1,5 @@
-{ inputs, pkgs, ... }: {
-    nix = {
+_: {
+  nix = {
     settings = {
       substituters = [
         #"http://binarycache.example.com"

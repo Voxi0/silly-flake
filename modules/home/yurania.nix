@@ -1,5 +1,4 @@
-{ optional, desktop, ... }:
-{
+_: {
   # Import Nix modules
   imports = [
     ./codium.nix
