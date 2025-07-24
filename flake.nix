@@ -40,18 +40,19 @@
     rust-overlay,
     ...
   } @ inputs: let
-		# Generate packages for specified system
+    # Generate packages for specified system
     system = "x86_64-linux";
     pkgs = pkgsFor system;
-    pkgsFor = system: import nixpkgs {
-			inherit system;
-			overlays = [rust-overlay.overlays.default];
-			config = {
-				allowUnfree = true;
-				# for godot android export
-				android_sdk.accept_license = true;
-			};
-		};
+    pkgsFor = system:
+      import nixpkgs {
+        inherit system;
+        overlays = [rust-overlay.overlays.default];
+        config = {
+          allowUnfree = true;
+          # for godot android export
+          android_sdk.accept_license = true;
+        };
+      };
   in {
     # Development environment to keep this codebase clean
     formatter.${system} = pkgs.alejandra;
@@ -64,23 +65,23 @@
 
     # NixOS configurations
     nixosConfigurations = {
-			linda = nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs;};
-				modules = [
-					./hosts/linda/configuration.nix
-					inputs.home-manager.nixosModules.default
-					inputs.nix-flatpak.nixosModules.nix-flatpak
-					inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
-				];
-			};
-			yurania = nixpkgs.lib.nixosSystem {
-				specialArgs = {inherit inputs pkgs;};
-				modules = [
-					./hosts/yurania/configuration.nix
-					inputs.home-manager.nixosModules.default
-					inputs.nix-flatpak.nixosModules.nix-flatpak
-				];
-			};
-		};
+      linda = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/linda/configuration.nix
+          inputs.home-manager.nixosModules.default
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+          inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
+        ];
+      };
+      yurania = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs pkgs;};
+        modules = [
+          ./hosts/yurania/configuration.nix
+          inputs.home-manager.nixosModules.default
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+        ];
+      };
+    };
   };
 }
